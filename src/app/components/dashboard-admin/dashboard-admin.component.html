@@ -1,0 +1,105 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link</a>
+      </li>
+
+    </ul>
+
+    <div class="d-flex">
+      <button class="btn btn-danger" type="button" (click)="salir()">Salir</button>
+
+    </div>
+
+
+  </div>
+</nav>
+
+<h1 xmlns="http://www.w3.org/1999/html">Los mejores hogares en <small>Inmobiliaria Parra</small> (Admin)
+</h1>
+<hr>
+
+
+<div class="container mt-10 ">
+  <form (ngSubmit)="registrar(formulario)" #formulario="ngForm"
+        class="position-absolute top-50 start-50 translate-middle">
+
+    <h2 class="text-center mb-5">Registrar Inmueble</h2>
+    <div class="mb-3">
+      <label for="tipo" class="form-label">Tipo</label>
+      <input type="text"
+             class="form-control"
+             id="tipo"
+             aria-describedby="emailHelp"
+             name="tipo"
+             required
+             [(ngModel)]="inmueble.tipo"
+      >
+      <span *ngIf="formulario.submitted && formulario.controls['tipo'].errors"
+            class="text-danger animate__animated animate__fadeInLeft">
+        El tipo es obligatorio
+      </span>
+
+    </div>
+    <div class="mb-3">
+      <label for="cantHabitaciones" class="form-label">Cantidad Habitaciones</label>
+      <input type="cantHabitaciones"
+             class="form-control"
+             id="cantHabitaciones"
+             name="cantHabitaciones"
+             required
+
+             [(ngModel)]="inmueble.cantidadHabitaciones"
+      >
+
+    </div>
+    <div class="mb-3">
+      <label for="cantBanios" class="form-label">Cantidad Baños</label>
+      <input type="text"
+             class="form-control"
+             id="cantBanios"
+             name="cantBanios"
+             required
+             minlength="3"
+             [(ngModel)]="inmueble.cantidadBanios"
+      >
+
+    </div>
+
+    <div class="mb-3">
+      <label for="foto" class="form-label">Foto</label>
+      <input (change)="capturarFile($event)"
+              type="file"
+             class="form-control"
+             id="foto"
+             aria-describedby="emailHelp"
+             name="foto"
+             required
+             [(ngModel)]="inmueble.foto"
+      >
+      <span *ngIf="formulario.submitted && formulario.controls['foto'].errors"
+            class="text-danger animate__animated animate__fadeInLeft">
+        La foto es obligatorio
+      </span>
+    </div>
+
+    <div *ngIf="previsualizacion" align="center">
+      <img width="100" [src]="previsualizacion" alt="" >
+    </div>
+
+    <div class="d-grid gap-2 mt-3" >
+      <button class="btn btn-primary" type="submit">Registrar</button>
+    </div>
+  </form>
+
+</div>
+
